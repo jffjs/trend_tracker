@@ -1,0 +1,8 @@
+.row
+  .span1
+    %img{ :src => tweet.profile_image_url }
+  .span6
+    .row
+      %strong= tweet.from_user
+    .row
+      = tweet.text

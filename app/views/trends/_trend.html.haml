@@ -1,0 +1,4 @@
+= link_to trend_path(trend) do
+  %strong= trend.query
+  - unless trend.location.blank?
+    near #{trend.location}

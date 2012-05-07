@@ -1,0 +1,38 @@
+- if user_signed_in?
+  .span5
+    .well.sidebar-nav
+      %h3 Your Trends
+      %ul.nav.nav-list
+        %li.nav-header
+          New
+        %li
+          #notice= flash[:notice]
+          #alert= flash[:alert]
+          = render partial: 'form'
+        - @trends.each do |trend|
+          - if trend == @trend
+            %li.active
+              = render partial: 'trend', locals: { trend: trend }
+          - else
+            %li
+              = render partial: 'trend', locals: { trend: trend }
+  .span7
+    - if @trend && @trend.valid?
+      = link_to trend_path(@trend), method: :delete do
+        %i.icon-remove
+        Delete trend
+      - if @trend.tweets.size > 0
+        %ul#tweets.unstyled
+          - @trend.tweets.each do |tweet|
+            %li.tweet
+              = render partial: 'tweet', locals: { tweet: tweet }
+      - else
+        No new tweets!
+    - else
+      %p Please enter a query or hashtag
+- else
+  Please
+  = link_to "sign up", new_user_registration_path
+  or
+  = link_to "log in", new_user_session_path
+  to continue.
