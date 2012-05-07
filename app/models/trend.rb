@@ -20,10 +20,10 @@ class Trend < ActiveRecord::Base
       # set the last tweet so we know where to search from next time
       if @tweets.size > 0
         self.last_tweet = @tweets.first.id
-        self.save
+        save
       end
     end
 
-    return @tweets
+    @tweets
   end
 end
