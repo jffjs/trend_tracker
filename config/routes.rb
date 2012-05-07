@@ -1,6 +1,6 @@
 TrendTracker::Application.routes.draw do
   devise_for :users
-  resources :trends
+  resources :trends, only: [:index, :create, :show, :destroy]
   root to: 'trends#index'
 
   # The priority is based upon order of creation:
